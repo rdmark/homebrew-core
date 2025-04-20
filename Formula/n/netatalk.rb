@@ -24,7 +24,7 @@ class Netatalk < Formula
     sha256 x86_64_linux:  "f372de141b504d3cafdae217f3e39599ac1fdb3da384c61f6868004c1928af32"
   end
 
-  depends_on "docbook-xsl" => :build
+  depends_on "cmark-gfm" => :build
   depends_on "meson" => :build
   depends_on "ninja" => :build
   depends_on "pkgconf" => :build
@@ -36,8 +36,6 @@ class Netatalk < Formula
   depends_on "libgcrypt"
   depends_on "mariadb-connector-c"
   depends_on "openldap" # macOS LDAP.Framework is not fork safe
-
-  uses_from_macos "libxslt" => :build
 
   uses_from_macos "krb5"
   uses_from_macos "libxcrypt"
@@ -64,7 +62,6 @@ class Netatalk < Formula
       "-Dwith-afpstats=false",
       "-Dwith-appletalk=#{OS.linux?}", # macOS doesn't have an AppleTalk stack
       "-Dwith-bdb-path=#{Formula["berkeley-db@5"].opt_prefix}",
-      "-Dwith-docbook-path=#{Formula["docbook-xsl"].opt_prefix}/docbook-xsl",
       "-Dwith-init-dir=#{prefix}",
       "-Dwith-init-hooks=false",
       "-Dwith-install-hooks=false",
